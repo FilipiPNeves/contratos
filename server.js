@@ -5,11 +5,19 @@ const cors = require("cors");
 const { PDFDocument, rgb } = require("pdf-lib");
 
 const app = express();
+const PORT = 5000;
 
 // Habilita CORS para permitir requisições do front-end
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+const corsOptions = {
+    origin: "*", // 🔹 Permite requisições de qualquer origem (substitua pelo domínio correto se necessário)
+    methods: ["GET", "POST"], // 🔹 Garante que POST seja permitido
+    allowedHeaders: ["Content-Type"]
+};
+app.use(cors(corsOptions));
 
 // Pasta onde os modelos de PDF estão armazenados
 const PDF_FOLDER = path.join(__dirname, "modelos_pdf");
@@ -306,9 +314,8 @@ app.get("/listar_contratos", (req, res) => {
     });
 });
 
-const PORT = process.env.PORT || 5000;
-
 // Inicia o servidor
 app.listen(PORT, () => {
     console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
+
