@@ -280,8 +280,8 @@ async function preencherPDF(dados) {
 }
 
 // Rota para processar o preenchimento do PDF e enviar sem salvar
-app.post("/gerar_pdf", async (req, res) => {
-    const { contrato, observacao } = req.body;
+app.get("/gerar_pdf", async (req, res) => {
+    const { contrato, observacao } = req.query;
 
     if (!contrato) {
         return res.status(400).json({ error: "Contrato não especificado." });
