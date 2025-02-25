@@ -12,13 +12,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const corsOptions = {
-    origin: "*", // 🔹 Permite requisições de qualquer origem (substitua pelo domínio correto se necessário)
-    methods: ["GET", "POST"], // 🔹 Garante que POST seja permitido
-    allowedHeaders: ["Content-Type"]
-};
-app.use(cors(corsOptions));
-
 // Pasta onde os modelos de PDF estão armazenados
 const PDF_FOLDER = path.join(__dirname, "modelos_pdf");
 
@@ -318,4 +311,12 @@ app.get("/listar_contratos", (req, res) => {
 app.listen(PORT, () => {
     console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
+
+const corsOptions = {
+    origin: process.env.CORS_ORIGIN || "*", 
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"]
+};
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 
