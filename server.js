@@ -289,6 +289,7 @@ app.get("/gerar_pdf", async (req, res) => {
 
     console.log('contrato', contrato);
     observacao = decodeURIComponent(observacao);
+    observacao = observacao.normalize("NFC");  // Converte para a forma correta
     console.log('observacao', observacao);
 
     
