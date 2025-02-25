@@ -93,7 +93,7 @@ async function preencherPDF(dados) {
 
         // Exemplo: Escrevendo os valores no PDF (posição ajustável)
         for (const key in valoresExtraidos) {
-            if(contrato == '204' || contrato == '304') {
+            if(contrato == '204' || contrato == '304' || contrato == 'alvin') {
                 if(key == 1) { // NOME
                     page.drawText(`${valoresExtraidos[key]}`, { 
                         x: 100, 
@@ -261,10 +261,6 @@ async function preencherPDF(dados) {
                 page.drawText(dia.toString(), { x: 265, y: 180, size: fontSize, color: rgb(0, 0, 0) });
                 page.drawText(mes.toString(), { x: 340, y: 180, size: fontSize, color: rgb(0, 0, 0) });
                 page.drawText(ano.toString(), { x: 485, y: 180, size: fontSize, color: rgb(0, 0, 0) });
-            }
-            
-            if(contrato == 'alvin') {
-
             }
         }
 
