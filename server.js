@@ -89,6 +89,8 @@ async function preencherPDF(dados) {
             }
         });
 
+        console.log("valoresExtraidos = ", valoresExtraidos)
+
         // Exemplo: Escrevendo os valores no PDF (posição ajustável)
         for (const key in valoresExtraidos) {
             if(contrato == '204' || contrato == '304') {
