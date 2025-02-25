@@ -5,7 +5,6 @@ const cors = require("cors");
 const { PDFDocument, rgb } = require("pdf-lib");
 
 const app = express();
-const PORT = 5000;
 
 // Habilita CORS para permitir requisições do front-end
 app.use(cors());
@@ -306,6 +305,8 @@ app.get("/listar_contratos", (req, res) => {
         res.json({ contratos });
     });
 });
+
+const PORT = process.env.PORT || 5000;
 
 // Inicia o servidor
 app.listen(PORT, () => {
