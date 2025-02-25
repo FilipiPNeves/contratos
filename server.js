@@ -76,8 +76,6 @@ async function preencherPDF(dados) {
         // Divide a observação em linhas
         const linhas = observacao.split("\n");
 
-        console.log('linhas = ', linhas)
-
         // Objeto para armazenar os valores extraídos
         let valoresExtraidos = {};
 
@@ -90,8 +88,6 @@ async function preencherPDF(dados) {
                 valoresExtraidos[`${index + 1}`] = valor;
             }
         });
-
-        console.log("valoresExtraidos = ", valoresExtraidos)
 
         // Exemplo: Escrevendo os valores no PDF (posição ajustável)
         for (const key in valoresExtraidos) {
@@ -269,7 +265,6 @@ async function preencherPDF(dados) {
 
         console.log("✅ Textos adicionados!");
 
-
         // Gera o PDF na memória
         console.log("💾 Salvando o novo PDF...");
         const pdfBytes = await pdfDoc.save();
@@ -283,8 +278,8 @@ async function preencherPDF(dados) {
 }
 
 // Rota para processar o preenchimento do PDF e enviar sem salvar
-app.get("/gerar_pdf", async (req, res) => {
-    const { contrato, observacao } = req.query;
+app.post("/gerar_pdf", async (req, res) => {
+    const { contrato, observacao } = req.body;
 
     if (!contrato) {
         return res.status(400).json({ error: "Contrato não especificado." });
