@@ -76,6 +76,8 @@ async function preencherPDF(dados) {
         // Divide a observação em linhas
         const linhas = observacao.split("\n");
 
+        console.log('linhas = ', linhas)
+
         // Objeto para armazenar os valores extraídos
         let valoresExtraidos = {};
 
