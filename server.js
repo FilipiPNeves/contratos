@@ -171,6 +171,9 @@ async function preencherPDF(dados) {
                         color: rgb(0, 0, 0) 
                     });
                 }
+                page.drawText(dia.toString(), { x: 265, y: 180, size: fontSize, color: rgb(0, 0, 0) });
+                page.drawText(mes.toString(), { x: 340, y: 180, size: fontSize, color: rgb(0, 0, 0) });
+                page.drawText(ano.toString(), { x: 485, y: 180, size: fontSize, color: rgb(0, 0, 0) });
             }
 
             if(contrato == 'bragao') {
@@ -259,10 +262,6 @@ async function preencherPDF(dados) {
 
             }
         }
-
-        page.drawText(dia.toString(), { x: 265, y: 180, size: fontSize, color: rgb(0, 0, 0) });
-        page.drawText(mes.toString(), { x: 340, y: 180, size: fontSize, color: rgb(0, 0, 0) });
-        page.drawText(ano.toString(), { x: 485, y: 180, size: fontSize, color: rgb(0, 0, 0) });
 
         console.log("✅ Textos adicionados!");
 
