@@ -93,9 +93,9 @@ async function preencherPDF(dados) {
             if (!texto) return ""; // Evita erros com valores nulos ou undefined
             return texto
                 .split(" ") // Divide o texto em palavras
-                .map(palavra => palavra.replace(/[^\p{L}\p{N}\p{P}\p{Zs}]/gu, "")) // Mantém letras, números, pontuação e espaços
+                .map(palavra => palavra.replace(/[^a-zA-ZÀ-ÖØ-öø-ÿ0-9\s.,;:!?()'"%-]/g, "")) // Remove caracteres inválidos, preservando letras acentuadas e pontuação
                 .join(" "); // Reagrupa as palavras com espaços
-        }
+        }        
         
         // Itera sobre cada campo extraído e remove caracteres inválidos
         for (const key in valoresExtraidos) {
