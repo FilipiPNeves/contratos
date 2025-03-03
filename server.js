@@ -93,7 +93,7 @@ async function preencherPDF(dados) {
             if (!texto) return ""; // Evita erros com valores nulos ou undefined
             return texto
                 .split(" ") // Divide o texto em palavras
-                .map(palavra => palavra.replace(/[^\x20-\x7E]/g, "")) // Remove caracteres inválidos de cada palavra
+                .map(palavra => palavra.replace(/[^\p{L}\p{N}\p{P}\p{Zs}]/gu, "")) // Mantém letras, números, pontuação e espaços
                 .join(" "); // Reagrupa as palavras com espaços
         }
         
