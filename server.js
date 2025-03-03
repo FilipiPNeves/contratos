@@ -89,9 +89,28 @@ async function preencherPDF(dados) {
             }
         });
 
+        function limparTextoParaPDF(texto) {
+            if (!texto) return ""; // Evita erros com valores nulos ou undefined
+            return texto
+                .split(" ") // Divide o texto em palavras
+                .map(palavra => palavra.replace(/[^\x20-\x7E]/g, "")) // Remove caracteres inválidos de cada palavra
+                .join(" "); // Reagrupa as palavras com espaços
+        }
+        
+        // Itera sobre cada campo extraído e remove caracteres inválidos
+        for (const key in valoresExtraidos) {
+            let textoOriginal = valoresExtraidos[key];
+            let textoLimpo = limparTextoParaPDF(textoOriginal);
+        
+            console.log(`🔍 Campo ${key}: Original -> "${textoOriginal}"`);
+            console.log(`✅ Campo ${key}: Limpo -> "${textoLimpo}"`);
+        
+            valoresExtraidos[key] = textoLimpo; // Atualiza o objeto com o texto limpo
+        }
+        
         console.log("valoresExtraidos = ", valoresExtraidos)
 
-        // Exemplo: Escrevendo os valores no PDF (posição ajustável)
+        // Exemplo: Escrevendo os valores no PDF (posição ajustável) Contrato
         for (const key in valoresExtraidos) {
             if(contrato == '204' || contrato == '304' || contrato == 'alvin') {
                 if(key == 1) { // NOME
@@ -284,6 +303,8 @@ app.get("/gerar_pdf", async (req, res) => {
 
     if (!contrato) {
         return res.status(400).json({ error: "Contrato não especificado." });
+
+        valoresExtraidos
     }
 
     console.log('contrato', contrato);
